@@ -54,11 +54,28 @@
         align="center"
         label="总资产">
       </el-table-column>
+<!--      <el-table-column-->
+<!--        prop="address"-->
+<!--        header-align="center"-->
+<!--        align="center"-->
+<!--        label="地址">-->
+<!--      </el-table-column>-->
+
       <el-table-column
         prop="address"
         header-align="center"
         align="center"
         label="地址">
+        <template slot-scope="scope">
+          <div v-if="scope.row.address">
+            <a v-if="scope.row.chain == 'BTC'" :href="'https://btc.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
+            <a v-if="scope.row.chain == 'ETH'" :href="'https://eth.tokenview.com/cn/address' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
+            <a v-if="scope.row.chain == 'EOS'" :href="'https://eosflare.io/account/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
+            <a v-if="scope.row.chain == 'ATOM'" :href="'https://atom.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
+            <a v-if="scope.row.chain == 'TRX'" :href="'https://trx.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
+          </div>
+          <div v-else> - </div>
+        </template>
       </el-table-column>
 
 <!--      <el-table-column-->
@@ -96,24 +113,37 @@
       <!--        align="center"-->
       <!--        label="状态（0 正常，-1 删除）">-->
       <!--      </el-table-column>-->
+<!--      <el-table-column-->
+<!--        prop="brand"-->
+<!--        header-align="center"-->
+<!--        align="center"-->
+<!--        label="机型">-->
+<!--      </el-table-column>-->
+<!--      <el-table-column-->
+<!--        prop="os"-->
+<!--        header-align="center"-->
+<!--        align="center"-->
+<!--        label="系统">-->
+<!--      </el-table-column>-->
+<!--      <el-table-column-->
+<!--        prop="version"-->
+<!--        header-align="center"-->
+<!--        align="center"-->
+<!--        label="版本">-->
+<!--      </el-table-column>-->
+
       <el-table-column
-        prop="brand"
         header-align="center"
         align="center"
-        label="机型">
+        label="【机型】-【系统】-【版本】"
+        width="250">
+        <template slot-scope="scope">
+          【{{ scope.row.brand }}】 <br>
+          【{{ scope.row.os }}】 <br>
+          【{{ scope.row.version }}】 <br>
+        </template>
       </el-table-column>
-      <el-table-column
-        prop="os"
-        header-align="center"
-        align="center"
-        label="系统">
-      </el-table-column>
-      <el-table-column
-        prop="version"
-        header-align="center"
-        align="center"
-        label="版本">
-      </el-table-column>
+
       <el-table-column
         prop="createTime"
         header-align="center"
@@ -142,7 +172,7 @@
       @size-change="sizeChangeHandle"
       @current-change="currentChangeHandle"
       :current-page="pageIndex"
-      :page-sizes="[10, 20, 50, 100]"
+      :page-sizes="[100, 200, 500]"
       :page-size="pageSize"
       :total="totalPage"
       layout="total, sizes, prev, pager, next, jumper">
@@ -163,7 +193,7 @@ export default {
       },
       dataList: [],
       pageIndex: 1,
-      pageSize: 10,
+      pageSize: 100,
       totalPage: 0,
       dataListLoading: false,
       dataListSelections: [],

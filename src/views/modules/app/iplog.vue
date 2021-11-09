@@ -62,7 +62,7 @@
       @size-change="sizeChangeHandle"
       @current-change="currentChangeHandle"
       :current-page="pageIndex"
-      :page-sizes="[10, 20, 50, 100]"
+      :page-sizes="[100, 200, 500]"
       :page-size="pageSize"
       :total="totalPage"
       layout="total, sizes, prev, pager, next, jumper">
@@ -82,7 +82,7 @@
         },
         dataList: [],
         pageIndex: 1,
-        pageSize: 10,
+        pageSize: 100,
         totalPage: 0,
         dataListLoading: false,
         dataListSelections: [],
@@ -110,7 +110,7 @@
         }).then(({data}) => {
           if (data && data.code === 0) {
             this.dataList = data.page.list
-            this.totalPage = data.page.totalCount
+            this.totalPage = data.page.total
           } else {
             this.dataList = []
             this.totalPage = 0
