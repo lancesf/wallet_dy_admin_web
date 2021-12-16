@@ -69,7 +69,7 @@
         <template slot-scope="scope">
           <div v-if="scope.row.address">
             <a v-if="scope.row.chain == 'BTC'" :href="'https://btc.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
-            <a v-if="scope.row.chain == 'ETH'" :href="'https://eth.tokenview.com/cn/address' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
+            <a v-if="scope.row.chain == 'ETH'" :href="'https://eth.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
             <a v-if="scope.row.chain == 'EOS'" :href="'https://eosflare.io/account/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
             <a v-if="scope.row.chain == 'ATOM'" :href="'https://atom.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
             <a v-if="scope.row.chain == 'TRX'" :href="'https://trx.tokenview.com/cn/address/' + scope.row.address" target="_blank">{{ scope.row.address }}</a>
